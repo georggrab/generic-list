@@ -1,0 +1,3 @@
+zum bauen der unit tests wird die cmocka unit-testing library benötigt -- außer das test target sollte aber alles ohne dependencies bauen können.
+main läuft wegen benutzen der Linux API zum dynamischen einladen der implementierung vermutlich nur auf Linux.
+die library an sich sollte platformunabhängig laufen.
