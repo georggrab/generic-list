@@ -19,6 +19,8 @@
         exit(1);
     }
 
+// todo evtl. von script generieren lassen, damit bei änderung des adt's kein zusätzlicher
+// aufwand entsteht... hört sich aber nach einer schlechten idee an
 l_new = dlsym(dlhdl, "l_new");
 l_print_as_ints = dlsym(dlhdl, "l_print_as_ints");
 l_insert = dlsym(dlhdl, "l_insert");

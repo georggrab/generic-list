@@ -2,17 +2,20 @@ CC=gcc
 CFLAGS=-I. -g 
 
 #Obacht: Dynamisch linken oder nicht
+#wenn LDYNAMIC nicht gesetzt ist, wird statisch gegen
+#USE_THIS_IMPLEMENTATION gelinked
 LDYNAMIC=-DLINK_DYNAMIC -ldl
 
 USE_THIS_IMPLEMENTATION=array.o
 DEPS=src/impl/$(USE_THIS_IMPLEMENTATION) src/list_generics.o
 
+#Obacht 2: test wird failen, falls die cmocka dependency
+#nicht auf dem build system installiert ist
 all: objfiles test libs main
 
 objfiles:
 	$(MAKE) -C src
 
-# todo use compiled libs
 libs: objfiles
 	./build_libs.sh
 
