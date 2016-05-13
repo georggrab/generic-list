@@ -1,23 +1,25 @@
-    DIR *d;
-    struct dirent *dir;
-    d = opendir("lib");
-    if(d){
-        while((dir = readdir(d)) != NULL){
+// todo bessere möglichkeit zum initialisieren des shared objects finden
+DIR *d;
+struct dirent *dir;
+d = opendir("lib");
+if(d){
+    while((dir = readdir(d)) != NULL){
+        if (*dir->d_name != '.')
             printf("Implementierung gefunden: %s\n", dir->d_name);
-        }
     }
+}
 
-    char choice[30];
-    char lib[] = "lib/";
-    printf("Welche soll benutzt werden?\n");
-    printf("Library: ");
-    scanf("%20s", choice);
-    char *dl = strcat(lib, choice);
-    void *dlhdl = dlopen(dl, RTLD_NOW);
-    if (!dlhdl){
-        fputs(dlerror(), stderr);
-        exit(1);
-    }
+char choice[30];
+char lib[] = "lib/";
+printf("Welche soll benutzt werden?\n");
+printf("Library: ");
+scanf("%20s", choice);
+char *dl = strcat(lib, choice);
+void *dlhdl = dlopen(dl, RTLD_NOW);
+if (!dlhdl){
+    fputs(dlerror(), stderr);
+    exit(1);
+}
 
 // todo evtl. von script generieren lassen, damit bei änderung des adt's kein zusätzlicher
 // aufwand entsteht... hört sich aber nach einer schlechten idee an
