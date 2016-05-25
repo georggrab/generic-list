@@ -7,7 +7,7 @@ CFLAGS=-I. -g
 LDYNAMIC=-DLINK_DYNAMIC -ldl
 
 USE_THIS_IMPLEMENTATION=array.o
-DEPS=src/impl/$(USE_THIS_IMPLEMENTATION) src/list_generics.o
+DEPS=src/impl/$(USE_THIS_IMPLEMENTATION) src/list_generics.o src/sorters.o
 
 #Obacht 2: test wird failen, falls die cmocka dependency
 #nicht auf dem build system installiert ist
@@ -25,6 +25,9 @@ ifdef LDYNAMIC
 else
 	$(CC) $(DEPS) main.c -omain
 endif
+
+profile: src libs
+	$(CC) $(DEPS) -g profile.c -oprofile
 
 clean:
 	rm -f lib/*.a

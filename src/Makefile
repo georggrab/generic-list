@@ -1,5 +1,6 @@
 main:
 	$(CC) -g -c list_generics.c
+	$(CC) -g -c sorters.c
 	$(MAKE) -C impl
 
 sorters: main

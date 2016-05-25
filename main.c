@@ -13,9 +13,9 @@
 // Benutzer der generics library muss um die
 // purge funktion nutzen zu können den equality
 // check selbst implementieren, hier bspw. für ints.
-int l_equal(void* l1, void* l2){
-    return *(int*)l1 == *(int*)l2;
-}
+//int l_equal(void* l1, void* l2){
+//    return *(int*)l1 == *(int*)l2;
+//}
 
 int main(void){
     
