@@ -10,6 +10,7 @@ list* l_new(void);
  * */
 
 void l_insert(list *l, void *el, int idx);
+void l_insert_at(list *l, void *el, int idx);
 void l_delete(list *l, void *el);
 void l_delete_at(list *l, int idx);
 void* l_locate(list *l, void *el);
