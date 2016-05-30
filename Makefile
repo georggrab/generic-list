@@ -6,7 +6,7 @@ CFLAGS=-I. -g
 #USE_THIS_IMPLEMENTATION gelinked
 LDYNAMIC=-DLINK_DYNAMIC -ldl
 
-USE_THIS_IMPLEMENTATION=array.o
+USE_THIS_IMPLEMENTATION=ll.o
 DEPS=src/impl/$(USE_THIS_IMPLEMENTATION) src/list_generics.o src/sorters.o
 
 #Obacht 2: test wird failen, falls die cmocka dependency

@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+// UNIX SPECIFIC TIMING
 #include <time.h>
-#include <sys/time.h>
 
 #include "src/list_generics.h"
 #include "src/list_interface.h"
@@ -56,13 +57,15 @@ int main (int argc, char **argv){
 
     for (int i = 0; i < sort_count; i++){
         for (int run = 0; run < iter; run++){
-            struct timeval start, stop;
+            struct timespec start, stop;
             printf("%s\t(run:%d)\t", stuff[i], run+1);
-            gettimeofday(&start, NULL);
+            
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
             arr[i](l_test_suite[i][run], n-1);
-            gettimeofday(&stop, NULL);
-
-            printf("took t=%3f\n", (stop.tv_usec-start.tv_usec)/1000.0F);
+            clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &stop);
+            double secs = stop.tv_nsec/10e6
+                - start.tv_nsec/10e6;
+            printf("took t=%f\n", secs);
         } 
     }
 }

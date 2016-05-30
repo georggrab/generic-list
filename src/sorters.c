@@ -78,26 +78,57 @@ void bubblesort(list *l, int len){
     }
 }
 
+void __mergesort(int m[], int l, int r){
+    if (r > l){
+        int k = (r + l) / 2;
+        __mergesort(m,l, k);
+        __mergesort(m,k+1, r);
+        int b[r];
+        int i, j;
+        for (i = k + 1; i > l; i--) b[i - 1] = m[i - 1];
+        for (j = k; j < r; j++) b[r+k-j] = m[j+1];
+        for (int x = l; x <= r; x++){
+            if (b[i] < b[j]){
+                m[x] = b[i++];
+            } else {
+                m[x] = b[j--];
+            }
+        }
+    }
+
+}
+
+void mergesort(int m [], int len){
+    __mergesort(m, 0, len);
+}
+
 #ifdef SORTERS_STANDALONE
 int main(void){
     // TODO TEST MAIN
     set_compare_less_than(__compare_less_than);
     set_compare_equal(__compare_equal);
 
-    list* l = l_new();
-    populate_random_ints(l, 15);
-
-    for(int i = 0; i<15; i++){
-        printf("%d ", *(int*)l_retrieve(l, i));
+    int a[] = {5,10,6,2,123123,1,2,6,1,2,5,3,1,2};
+    int len = 10;
+    mergesort(a, len-1);
+    for(int i = 0; i<len;i++){
+        printf("%d ", a[i]);
     }
     printf("\n");
-
-    //quicksort_recursive(l, 5000);
-    bubblesort(l,15);
-
-    for(int i = 0; i<15; i++){
-        printf("%d ", *(int*)l_retrieve(l, i));
-    }
-    printf("\n");
+////    list* l = l_new();
+//    populate_random_ints(l, 15);
+//
+//    for(int i = 0; i<15; i++){
+//        printf("%d ", *(int*)l_retrieve(l, i));
+//    }
+//    printf("\n");
+//
+//    //quicksort_recursive(l, 5000);
+//    bubblesort(l,15);
+//
+//    for(int i = 0; i<15; i++){
+//        printf("%d ", *(int*)l_retrieve(l, i));
+//    }
+//    printf("\n");
 }
 #endif

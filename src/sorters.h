@@ -5,7 +5,7 @@
 
 void quicksort(list *l);
 void insertionsort(list *l, int len);
-void mergesort(list *l);
+//void mergesort(list *l);
 void bubblesort(list *l, int len);
 
 void set_compare_func(int(*func)(void*,void*));
